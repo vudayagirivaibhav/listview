@@ -1,0 +1,88 @@
+.app {
+  text-align: center;
+  font-family: 'Avenir LT Std', sans-serif;
+}
+
+.view-container{
+ float: left;
+ padding:100px;
+ margin-right:50
+}
+
+.alphabet-list{
+ background-color: darkgray;
+ height: 100vh;
+}
+
+.label-list {
+  font-size: 1rem;
+  padding: 25px 15px;
+}
+
+.alphabets-view {
+  float: right;
+  margin-right: 10px;
+}
+
+  .loader {
+    width: 80px;
+    height: 80px;
+    clear: both;
+    margin: 20px auto;
+  }
+  
+  .loader-circle {
+    border: 4px grey solid;
+    border-top: 4px black solid;
+    border-radius: 50%;
+    -webkit-animation: spCircRot .6s infinite linear;
+    animation: spCircRot .6s infinite linear;
+  }
+
+  @-webkit-keyframes spCircRot {
+    from {
+      -webkit-transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(359deg);
+    }
+  }
+  @keyframes spCircRot {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+.alphabet-link{
+  background-color: #42b4d6;
+  color: #ffffff;
+  padding: 5px;
+  margin-top: 0;
+  margin-bottom: 4px;
+  cursor: pointer;
+  transition: all .2s ease-in-out; 
+}
+
+.alphabet-link:hover { transform: scale(1.5); }
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

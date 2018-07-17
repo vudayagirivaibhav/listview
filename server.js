@@ -16,8 +16,8 @@ db.once('open', () => console.log('mongo lab connected'));
    @input : text - string, page- number , resultsPerPage- number 
 */
 app.get('/search', (req, res) => {
-  let { searchString, page, resultsPerPage } = req.query;
-  let filterString = '/^' + searchString + '/'
+  let { text, page, resultsPerPage } = req.query;
+  let filterString = '/^' + text + '/'
   let query = { Labels: { '$regex': filterString.slice(1,-1)} }
   label.find(query)
     .skip((page-1)*resultsPerPage)

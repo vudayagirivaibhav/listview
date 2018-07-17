@@ -12,12 +12,17 @@ table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
 }
-
-td, th {
+th {
+  border: 2px solid #dddddd;
+  text-align: center;
+  padding: 5px;
+}
+td {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 5px;
 }
+
 
 tr:nth-child(even) {
   background-color: #dddddd;
@@ -68,12 +73,17 @@ tr:nth-child(even) {
 .load-more {
   cursor: pointer;
   font-size: 25px;
+  color:blue;
+}
+
+.load-more:hover{
+  color: red;
 }
 
 .no-data {
   cursor: pointer;
-  color:blue;
   font-size: 25px;
+  color:red;
 }
 
 .loader-circle {

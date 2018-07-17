@@ -21,6 +21,7 @@ class App extends Component {
     this.search(this.state.text, 1);
   }
 
+  //Search by taking text for a given page
   search = (searchText, page) => {
     console.log('called');
     this.setState({
@@ -43,15 +44,17 @@ class App extends Component {
     })
   }
 
+  // imcrement page after pressing load more
   incrementPage() {
     const { page, text } = this.state;
     this.setState({
       page: page + 1,
     }, () => {
-      this.search(text, page);
+      this.search(text, page +1);
     });
   }
 
+  // retrieves labels for a particular alphabet
   selectAlphabet = alphabet => {
     this.setState({
       page: 1,

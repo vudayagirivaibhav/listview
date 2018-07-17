@@ -17,7 +17,6 @@ export default class LabelView extends React.Component {
             .map((label, i) => (
                 <tr className="label" key={i}>
                     <td> {label.Labels} </td>
-                    <td><button className="show" >hide</button>  </td>
                 </tr>
             ));
         return (
@@ -25,7 +24,6 @@ export default class LabelView extends React.Component {
                 <tbody>
                     <tr>
                         <th>Label</th>
-                        <th>Option</th>
                     </tr>
                     {labels}
                 </tbody>

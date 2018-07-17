@@ -56,12 +56,12 @@ class App extends Component {
     this.setState({
       page: 1,
     }, () => {
-    this.search(alphabet,this.state.page);
+      this.search(alphabet, this.state.page);
     });
   }
 
   render() {
-    const { data, loading } = this.state;
+    const { data, loading, page } = this.state;
     return (
       <div className="app">
         <div> <h2> Label View </h2></div>
@@ -70,7 +70,12 @@ class App extends Component {
           {!loading &&
             (<div>
               <LabelView data={data}> </LabelView>
-              {data.length === 20 && <p className="load-more" onClick={() => this.incrementPage()}> Load more.. </p>}
+              {data.length === 20 &&
+                (<div>
+                  <p> page num: {page} </p>
+                  <p className="load-more" onClick={() => this.incrementPage()}> Load more.. </p>
+                </div>
+                )}
               {data.length === 0 && <p className="load-more"> No Data </p>}
             </div>
             )}

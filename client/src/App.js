@@ -7,27 +7,33 @@ import { searchLabels } from './actions/actions';
 import './App.css';
 
 class App extends Component {
-  state = {
-    data: [],
-    loading: true,
-  };
-
-  componentDidMount() {
-    this.search('a');
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+      loading: true,
+      text: 'a',
+      page: 1,
+    };
   }
 
-  search = searchString => {
+  componentDidMount() {
+    this.search(this.state.text, 1);
+  }
+
+  search = (searchText, page) => {
     console.log('called');
     this.setState({
       loading: true,
+      text: searchText,
     });
-    searchLabels(searchString, 20).then(resp => {
-      console.log('data', resp);
-      if (resp && resp.length) {
+    searchLabels(searchText, page, 20).then(response => {
+      console.log('data', response);
+      if (response && response.length) {
         this.setState({
-          data: resp,
+          data: response,
           loading: false,
-        })
+        });
       } else {
         this.setState({
           data: [],
@@ -37,19 +43,37 @@ class App extends Component {
     })
   }
 
+  incrementPage() {
+    const { page, text } = this.state;
+    this.setState({
+      page: page + 1,
+    }, () => {
+      this.search(text, page);
+    });
+  }
+
   selectAlphabet = alphabet => {
-    this.search(alphabet);
+    this.setState({
+      page: 1,
+    }, () => {
+    this.search(alphabet,this.state.page);
+    });
   }
 
   render() {
     const { data, loading } = this.state;
     return (
       <div className="app">
-        <p className="app-intro">{this.state.response}</p>
-        <div> Labels </div>
-        <Search filterList={this.search} />
+        <div> <h2> Label View </h2></div>
+        <Search filterText={this.state.text} filterList={this.search} />
         <div className="view-container">
-          {!loading && <LabelView data={data}> </LabelView>}
+          {!loading &&
+            (<div>
+              <LabelView data={data}> </LabelView>
+              {data.length === 20 && <p className="load-more" onClick={() => this.incrementPage()}> Load more.. </p>}
+              {data.length === 0 && <p className="load-more"> No Data </p>}
+            </div>
+            )}
           {loading && <div className="loader loader-circle"> Loading... </div>}
         </div>
         <div className="alphabets-view">

@@ -1,5 +1,5 @@
-export const searchLabels = ( searchString, numResult ) => (
-	fetch(`/search?searchString=${searchString}&numResult=${numResult}`, {
+export const searchLabels = ( searchString, page, resultsPerPage ) => (
+	fetch(`/search?searchString=${searchString}&page=${page}&resultsPerPage=${resultsPerPage}`, {
 		method: 'get',
 		headers: {
 			'Accept': 'application/json',

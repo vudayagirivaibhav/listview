@@ -6,23 +6,22 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 //Connection to mongo lab
-
 mongoose.connect('mongodb://litbit:Litbit123@ds137581.mlab.com:37581/listview', { useNewUrlParser: true });
 console.log(mongoose.connection.readyState);
-
-
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'mlab connection error'));
 db.once('open', () => console.log('mongo lab connected'));
 
+/*API for rtrieving the results
+   @input : text - string, page- number , resultsPerPage- number 
+*/
 app.get('/search', (req, res) => {
-  let { searchString, numResult } = req.query;
+  let { searchString, page, resultsPerPage } = req.query;
   let filterString = '/^' + searchString + '/'
-  console.log(filterString);
   let query = { Labels: { '$regex': filterString.slice(1,-1)} }
-  console.log(query);
   label.find(query)
-    .limit(parseInt(numResult))
+    .skip((page-1)*resultsPerPage)
+    .limit(parseInt(resultsPerPage))
     .exec((err, labels) => res.json(labels))
 });
 

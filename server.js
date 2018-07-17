@@ -3,7 +3,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const label = require('./model.js');
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.port || 5000;
 
 //Connection to mongo lab
 mongoose.connect('mongodb://litbit:Litbit123@ds137581.mlab.com:37581/listview', { useNewUrlParser: true });

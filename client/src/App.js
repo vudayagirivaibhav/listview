@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import AlphabetList from './components/AlphabetList';
 import LabelView from './components/LabelView';
-import Search from './components/Search';
 import { searchLabels } from './actions/actions';
 
 import './App.css';
@@ -15,6 +14,7 @@ class App extends Component {
       text: 'a',
       page: 1,
     };
+    this.search = this.search.bind(this);
   }
 
   componentDidMount() {
@@ -60,13 +60,25 @@ class App extends Component {
     });
   }
 
+  handleInput = e => {
+    this.search(e.target.value, 1);
+  }
+
   render() {
     const { data, loading, page } = this.state;
     return (
       <div className="app">
-        <div> <h2> Label View </h2></div>
-        <Search filterText={this.state.text} filterList={this.search} />
+        <div className="header">
+          <h2> Label View</h2>
+        </div>
         <div className="view-container">
+          <div className="search-bar">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Search List.."
+              onChange={this.handleInput} />
+          </div>
           {!loading &&
             (<div>
               <LabelView data={data}> </LabelView>
@@ -76,10 +88,10 @@ class App extends Component {
                   <p className="load-more" onClick={() => this.incrementPage()}> Load more.. </p>
                 </div>
                 )}
-              {data.length === 0 && <p className="load-more"> No Data </p>}
+              {data.length === 0 && <p className="no-data"> No Data </p>}
             </div>
             )}
-          {loading && <div className="loader loader-circle"> Loading... </div>}
+          {loading && <div className="loader loader-circle"> </div>}
         </div>
         <div className="alphabets-view">
           <AlphabetList selectAlphabet={this.selectAlphabet} />

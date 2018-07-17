@@ -1,18 +1,42 @@
-.app {
-  text-align: center;
-  font-family: 'Avenir LT Std', sans-serif;
+* {
+  box-sizing: border-box;
 }
 
 input{
   width: 600px;
-  margin-left: 240px;
   height: 40px;
   font-size: medium;
 }
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 5px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.app {
+  text-align: center;
+  font-family: 'Avenir LT Std', sans-serif;
+  margin: 0;
+}
+
+.search-bar {
+  float: left;
+  padding: 25px 100px;
+}
+
 .view-container{
  float: left;
  padding: 25px 100px;
- margin-left: 30%;
 }
 
 .alphabet-list{
@@ -46,6 +70,12 @@ input{
   font-size: 25px;
 }
 
+.no-data {
+  cursor: pointer;
+  color:blue;
+  font-size: 25px;
+}
+
 .loader-circle {
   border: 20px grey solid;
   border-top: 20px black solid;
@@ -71,20 +101,6 @@ input{
     }
   }
 
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-}
-
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 5px;
-}
-
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
 .alphabet-link{
   background-color: #42b4d6;
   color: #ffffff;
@@ -96,8 +112,3 @@ tr:nth-child(even) {
 }
 
 .alphabet-link:hover { transform: scale(1.5); }
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
